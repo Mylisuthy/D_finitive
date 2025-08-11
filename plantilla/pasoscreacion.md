@@ -13,15 +13,6 @@ npm install express cors dotenv @supabase/supabase-js
 npm install --save-dev nodemon
 
 **📄 Crear index.js**
-echo import express from 'express'; > index.js
-echo import cors from 'cors'; >> index.js
-echo import dotenv from 'dotenv'; >> index.js
-echo dotenv.config(); >> index.js
-echo const app = express(); >> index.js
-echo app.use(cors()); >> index.js
-echo app.use(express.json()); >> index.js
-echo app.get('/', (req, res) => res.send('Backend funcionando 🚀')); >> index.js
-echo app.listen(3000, () => console.log('Servidor backend en http://localhost:3000')); >> index.js
 ---
 ```
 echo "import express from 'express';
@@ -100,4 +91,5 @@ Si borraste node_modules o es un clon nuevo, solo asegúrate de correr:
 
 cd backend && npm install
 cd ../frontend && npm install
+
 

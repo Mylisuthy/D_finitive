@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrarse - SYKER</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <main class="login-container fade-in">
+    <h2>Registrarse</h2>
+    <form class="login-form" id="registerForm">
+      <input type="email" id="regEmail" placeholder="Correo electrónico" required>
+      <input type="password" id="regPassword" placeholder="Contraseña" required minlength="6">
+      <select id="regRol" required>
+        <option value="">Selecciona un rol</option>
+        <option value="estudiante">Estudiante</option>
+        <option value="docente">Docente</option>
+      </select>
+      <button type="submit" class="btn-primary">Crear cuenta</button>
+    </form>
+    <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+  </main>
+  <script type="module" src="../js/register.js"></script>
+</body>
+</html>

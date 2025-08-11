@@ -22,6 +22,23 @@ echo app.use(cors()); >> index.js
 echo app.use(express.json()); >> index.js
 echo app.get('/', (req, res) => res.send('Backend funcionando 🚀')); >> index.js
 echo app.listen(3000, () => console.log('Servidor backend en http://localhost:3000')); >> index.js
+---
+```
+echo "import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+app.get('/', (req, res) => res.send('Backend funcionando 🚀'));
+app.listen(3000, () => console.log('Servidor backend en http://localhost:3000'));
+" > index.js
+```
+---
 
 **Luego regresas a la raíz:**
 cd ..
@@ -83,3 +100,4 @@ Si borraste node_modules o es un clon nuevo, solo asegúrate de correr:
 
 cd backend && npm install
 cd ../frontend && npm install
+

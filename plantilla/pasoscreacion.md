@@ -1,17 +1,19 @@
 **creacion carpeta principal**
+```
 mkdir proyecto-fullstack
 cd proyecto-fullstack
-
+```
 **Inicializar Git**
-git init
+`git init`
 
 **Crear backend con Node.js**
+```
 mkdir backend
 cd backend
 npm init -y
 npm install express cors dotenv @supabase/supabase-js
 npm install --save-dev nodemon
-
+```
 **📄 Crear index.js**
 ---
 ```
@@ -32,64 +34,66 @@ app.listen(3000, () => console.log('Servidor backend en http://localhost:3000'))
 ---
 
 **Luego regresas a la raíz:**
-cd ..
+`cd ..`
 
 **Crear frontend con Vite**
-npm create vite@latest frontend
+`npm create vite@latest frontend`
 
 **Después:**
+```
 cd frontend
 npm install
 cd ..
-
+```
 **Carpetas adicionales**
+```
 mkdir sql
 mkdir data
 mkdir postman
-
+```
 **Crear README**
-echo # Proyecto Fullstack con Vite + Express + Supabase > README.md
+`echo # Proyecto Fullstack con Vite + Express + Supabase > README.md`
 
 **Para probar:**
-
+```
 Backend →
 cd backend
 npx nodemon index.js
-
+```
+```
 Frontend →
 cd frontend
 npm run dev
-
+```
 melos
 
 **1️⃣ Backend**
 
 Instala las dependencias necesarias:
-
+```
 npm init -y
 
 npm install express cors dotenv @supabase/supabase-js
 npm install --save-dev nodemon
-
+```
 **Para correrlo:**
-npx nodemon index.js
+`npx nodemon index.js`
 
 **2️⃣ Frontend**
 Entra en la carpeta del frontend:
 
-cd ../frontend
+`cd ../frontend`
 
-npm install
+`npm install`
 
 Para correrlo:
 
-npm run dev
+`npm run dev`
 
 **3️⃣ Si es la primera vez que clonas o limpiaste node_modules**
 
 Si borraste node_modules o es un clon nuevo, solo asegúrate de correr:
-
+```
 cd backend && npm install
 cd ../frontend && npm install
-
-
+```

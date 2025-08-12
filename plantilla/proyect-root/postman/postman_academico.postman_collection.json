@@ -1,0 +1,72 @@
+{
+  "info": {
+    "name": "API Académico",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:3000/api/login", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "login"] },
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"admin@demo.com\",\n  \"password\": \"HASHED_ADMIN\"\n}" }
+      }
+    },
+    {
+      "name": "Obtener estudiantes",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "http://localhost:3000/api/estudiantes", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "estudiantes"] }
+      }
+    },
+    {
+      "name": "Carga masiva estudiantes",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "http://localhost:3000/api/estudiantes/bulk", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "estudiantes", "bulk"] },
+        "body": {
+          "mode": "raw",
+          "raw": "[{\"usuario_id\":\"00000000-0000-0000-0000-000000000003\",\"nombre\":\"Luis\",\"apellido\":\"García\",\"matricula\":\"MAT2023001\",\"fecha_nacimiento\":\"2005-04-12\"}]"
+        }
+      }
+    },
+    {
+      "name": "Login - credenciales incorrectas",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "http://localhost:3000/api/login", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "login"] },
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"admin@demo.com\",\n  \"password\": \"incorrecta\"\n}" }
+      }
+    },
+    {
+      "name": "Carga masiva estudiantes - datos corruptos",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "http://localhost:3000/api/estudiantes/bulk", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "estudiantes", "bulk"] },
+        "body": {
+          "mode": "raw",
+          "raw": "[{\"usuario_id\":\"123\",\"nombre\":\"<script>alert(1)</script>\",\"apellido\":\"\",\"matricula\":\"\",\"fecha_nacimiento\":\"2024-99-99\"}]"
+        }
+      }
+    },
+    {
+      "name": "Obtener estudiantes sin token",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "http://localhost:3000/api/estudiantes", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "estudiantes"] }
+      }
+    }
+  ]
+}

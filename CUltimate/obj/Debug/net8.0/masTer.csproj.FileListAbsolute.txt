@@ -1,0 +1,5 @@
+C:\Users\MSUTHY\Desktop\Carayo\VeterinariaSanMiguel-main\VeterinariaSanMiguel-main\obj\Debug\net8.0\masTer.csproj.AssemblyReference.cache
+C:\Users\MSUTHY\Desktop\Carayo\VeterinariaSanMiguel-main\VeterinariaSanMiguel-main\obj\Debug\net8.0\masTer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MSUTHY\Desktop\Carayo\VeterinariaSanMiguel-main\VeterinariaSanMiguel-main\obj\Debug\net8.0\masTer.AssemblyInfoInputs.cache
+C:\Users\MSUTHY\Desktop\Carayo\VeterinariaSanMiguel-main\VeterinariaSanMiguel-main\obj\Debug\net8.0\masTer.AssemblyInfo.cs
+C:\Users\MSUTHY\Desktop\Carayo\VeterinariaSanMiguel-main\VeterinariaSanMiguel-main\obj\Debug\net8.0\masTer.csproj.CoreCompileInputs.cache

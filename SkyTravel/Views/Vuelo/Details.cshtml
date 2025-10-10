@@ -1,0 +1,64 @@
+@model SkyTravel.Models.Vuelo
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<h2>Detalles de Vuelo</h2>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Update" method="post">
+            
+            <div class="mt-3">
+                <label>Origen</label>
+                <input type="text" name="Loans" class="form-control" value="@Model.Origen"/>
+            </div>
+
+            <div class="mt-3">
+                <label>Destino</label>
+                <input type="text" name="Loans" class="form-control" value="@Model.Destino"/>
+            </div>
+
+            <div class="mt-3">
+                <label>Capacity</label>
+                <input type="text" name="Loans" class="form-control" value="@Model.Capacity"/>
+            </div>
+
+            <div class="mt-3">
+                <label>CodeVuelo</label>
+                <input type="text" name="Loans" class="form-control" value="@Model.CodeVuelo"/>
+            </div>
+
+            <div class="mt-3">
+                <label>Fecha salida</label>
+                <input type="text" name="Loans" class="form-control" value="@Model.Fsalida"/>
+            </div>
+
+            <div class="mt-3">
+                <label>Fecha llegada</label>
+                <input type="text" name="Loans" class="form-control" value="@Model.Fllegada"/>
+            </div>
+
+            <hr/>
+            <button type="submit" class="btn btn-outline-primary w-100">
+                <i class="bi bi-save"></i> Guardar cambios
+            </button>
+        </form>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-outline-secondary mt-3">
+    <i class="bi bi-arrow-left"></i> Back to List
+</a>
+
+<div class="mt-3">
+    <a asp-action="HistoryByUser" 
+       asp-controller="Loan" 
+       asp-route-cell="@Model" 
+       class="btn btn-outline-info w-100">
+        <i class="bi bi-clock-history"></i> Ver Historial de Préstamos Activos
+    </a>
+</div>
+
+
+<a asp-action="Index" class="btn btn-outline-secondary mt-3">
+    <i class="bi bi-arrow-left"></i> Back to List
+</a>

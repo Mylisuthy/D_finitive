@@ -1,0 +1,27 @@
+﻿@model SkyTravel.Models.Vuelo
+
+<div class="modal fade" id="editVueloModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="Update" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Vuelo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="mb-3"><label asp-for="Origen"></label><input asp-for="Origen" class="form-control" /></div>
+                    <div class="mb-3"><label asp-for="Destino"></label><input asp-for="Destino" class="form-control" /></div>
+                    <div class="mb-3"><label asp-for="Capacity"></label><input asp-for="Capacity" class="form-control" /></div>
+                    <div class="mb-3"><label asp-for="CodeVuelo"></label><input asp-for="CodeVuelo" class="form-control" /></div>
+                    <div class="mb-3"><label asp-for="Fsalida"></label><input asp-for="Fsalida" type="date" class="form-control" /></div>
+                    <div class="mb-3"><label asp-for="Fllegada"></label><input asp-for="Fllegada" type="date" class="form-control" /></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-warning">Guardar cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

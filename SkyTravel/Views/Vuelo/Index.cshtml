@@ -1,0 +1,166 @@
+﻿@model IEnumerable<SkyTravel.Models.Vuelo>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<div class="mb-3">
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-house"></i> Inicio
+    </a>
+    <a asp-controller="Vuelo" asp-action="Index" class="btn btn-outline-primary btn-sm">
+        <i class="bi bi-airplane"></i> Vuelos
+    </a>
+    <a asp-controller="Pasajero" asp-action="Index" class="btn btn-outline-success btn-sm">
+        <i class="bi bi-person"></i> Pasajeros
+    </a>
+    <a asp-controller="Reserva" asp-action="Index" class="btn btn-outline-warning btn-sm">
+        <i class="bi bi-calendar"></i> Reservas
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-3 sticky-top">
+        <div class="card">
+            <div class="card-body">
+                
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        @TempData["Error"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show">
+                        @TempData["Success"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+
+                <form asp-action="Register" method="post">
+                    
+                    <div class="mt-3">
+                        <label>Origen</label>
+                        <input type="text" class="form-control" name="Origen" required>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <label>Destino</label>
+                        <input type="text" class="form-control" name="Destino" required>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <label>Capacity</label>
+                        <input type="number" min="0" class="form-control" name="Capacity" required>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <label>codigo de Vuelo</label>
+                        <input type="string" class="form-control" name="CodeVuelo" required>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <label>Fecha salida</label>
+                        <input type="date" class="form-control" name="Fsalida" required>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <label>Fecha llegada</label>
+                        <input type="date" class="form-control" name="Fllegada" required>
+                    </div>
+                    
+                    <hr>
+                    <button type="submit" class="btn btn-primary w-100">Agregar vuelo</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <table class="table table-bordered">
+            <h2>Lista de Vuelos</h2>
+            <thead>
+            <tr>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>capacidad</th>
+                <th>codigo de Vuelo</th>
+                <th>Fecha salida</th>
+                <th>Fecha llegada</th>
+                <td>Acciones</td>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Origen</td>
+                    <td>@item.Destino</td>
+                    <td>@item.Capacity</td>
+                    <th>@item.CodeVuelo</th>
+                    <td>@item.Fsalida</td>
+                    <td>@item.Fllegada</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-primary dropdown-toggle" 
+                                    type="button" 
+                                    id="dropdownMenuButton-@item.Id" 
+                                    data-bs-toggle="dropdown" 
+                                    aria-expanded="false">
+                                <i class="bi bi-list"></i>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-@item.Id">
+                                <li>
+                                    <a class="dropdown-item text-success" 
+                                       asp-action="Details"
+                                       asp-controller="Vuelo" 
+                                       asp-route-Id="@item.Id">
+                                        <i class="bi bi-eye"></i> Details
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-warning modal-link"
+                                       asp-action="Update"
+                                       asp-route-id="@item.Id">
+                                        <i class="bi bi-pencil"></i> Edit
+                                    </a>
+                                </li>
+                                <li>
+                                    <form asp-action="Delete" 
+                                          asp-controller="Vuelo" 
+                                          asp-route-Id="@item.Id" 
+                                          method="post" 
+                                          style="display:inline;">
+                                        <button type="submit" class="dropdown-item text-danger"
+                                                onclick="return confirm('Are you sure you want to delete this user?');">
+                                            <i class="bi bi-trash"></i> Delete
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            }
+            <div id="modal-placeholder"></div>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+  document.querySelectorAll('.modal-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      fetch(this.href)
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('modal-placeholder').innerHTML = html;
+          var modalEl = document.getElementById('editVueloModal');
+          var modal = new bootstrap.Modal(modalEl);
+          modal.show();
+        });
+    });
+  });
+</script>
+}

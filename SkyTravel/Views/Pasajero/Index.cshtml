@@ -1,0 +1,143 @@
+﻿@model IEnumerable<SkyTravel.Models.Pasajero>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<div class="mb-3">
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-house"></i> Inicio
+    </a>
+    <a asp-controller="Vuelo" asp-action="Index" class="btn btn-outline-primary btn-sm">
+        <i class="bi bi-airplane"></i> Vuelos
+    </a>
+    <a asp-controller="Pasajero" asp-action="Index" class="btn btn-outline-success btn-sm">
+        <i class="bi bi-person"></i> Pasajeros
+    </a>
+    <a asp-controller="Reserva" asp-action="Index" class="btn btn-outline-warning btn-sm">
+        <i class="bi bi-calendar"></i> Reservas
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-3 sticky-top">
+        <div class="card">
+            <div class="card-body">
+
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        @TempData["Error"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show">
+                        @TempData["Success"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+
+                <form asp-action="Register" method="post">
+                    <div class="mt-3">
+                        <label>Nombre</label>
+                        <input type="text" class="form-control" name="Name" required>
+                    </div>
+
+                    <div class="mt-3">
+                        <label>Documento</label>
+                        <input type="number" class="form-control" name="Document" required>
+                    </div>
+
+                    <div class="mt-3">
+                        <label>Teléfono</label>
+                        <input type="number" class="form-control" name="Tell" required>
+                    </div>
+
+                    <div class="mt-3">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="Email" required>
+                    </div>
+
+                    <hr>
+                    <button type="submit" class="btn btn-primary w-100">Registrar Pasajero</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <h2>Lista de Pasajeros</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Documento</th>
+                    <th>Teléfono</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Document</td>
+                        <td>@item.Tell</td>
+                        <td>@item.Email</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-primary dropdown-toggle" 
+                                        type="button" 
+                                        id="dropdownMenuButton-@item.Id" 
+                                        data-bs-toggle="dropdown">
+                                    <i class="bi bi-list"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-@item.Id">
+                                    <li>
+                                        <a class="dropdown-item text-warning modal-link"
+                                           asp-action="Update"
+                                           asp-route-id="@item.Id">
+                                            <i class="bi bi-pencil"></i> Editar
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <form asp-action="Delete"
+                                              asp-controller="Pasajero"
+                                              asp-route-id="@item.Id"
+                                              method="post"
+                                              style="display:inline;">
+                                            <button type="submit" class="dropdown-item text-danger"
+                                                    onclick="return confirm('¿Seguro que deseas eliminar este pasajero?');">
+                                                <i class="bi bi-trash"></i> Eliminar
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                <div id="modal-placeholder"></div>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+document.querySelectorAll('.modal-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    fetch(this.href)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('modal-placeholder').innerHTML = html;
+        var modalEl = document.getElementById('editPasajeroModal');
+        var modal = new bootstrap.Modal(modalEl);
+        modal.show();
+      });
+  });
+});
+</script>
+}
